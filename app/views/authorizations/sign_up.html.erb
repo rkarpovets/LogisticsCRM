@@ -1,0 +1,58 @@
+<% content_for :title do %>
+	Sign Up
+<% end %>
+
+	<section class="registration">
+		<div class="registration__container">
+			<form class="registration__form" action="">
+				<label for="firstname">First name:</label>
+				<input type="text" id="firstname" name="firstname">
+				<span id="firstNameError" class="error"></span>
+
+				<label for="lastname">Last name:</label>
+				<input type="text" id="lastname" name="lastname">
+				<span id="lastNameError" class="error"></span>
+
+				<label for="date">Birthdate:</label>
+				<input type="date" id="date" name="birthdate">
+				<span class="error" id="dateError"></span>
+
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email">
+				<span class="error" id="emailError"></span>
+
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password">
+				<span class="error" id="passwordError"></span>
+
+				<label for="role">Choose your role:</label>
+				<select id="role" name="role">
+					<option value="">Please select</option>
+					<option value="default user">Default user</option>
+					<option value="business user">Business user</option>
+				</select>
+				<span class="error" id="selectError"></span>
+
+				<label>Choose gender:</label>
+				<div class="radio-container">
+					<input type="radio" id="male" name="gender" value="Male">
+					<label for="male">Male</label>
+				</div>
+				<div class="radio-container">
+					<input type="radio" id="female" name="gender" value="Female">
+					<label for="female">Female</label>
+				</div>
+				<div class="radio-container">
+					<input type="radio" id="non-binary" name="gender" value="Non-binary">
+					<label for="non-binary">Non-binary</label>
+				</div>
+				<span class="error" id="genderError"></span>
+
+				<label for="phone">Phone number:</label>
+				<input type="text" id="phone" name="phone">
+				<span class="error" id="numberError"></span>
+
+				<button class="submit" type="submit">Sign up</button>
+			</form>
+		</div>
+	</section>

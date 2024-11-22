@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "Logistics Crm" %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="https://www.pngall.com/wp-content/uploads/5/Truck-PNG-Image-HD.png" type="image/png">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css"
+      integrity="sha512-EJp8vMVhYl7tBFE2rgNGb//drnr1+6XKMvTyamMS34YwOEFohhWkGq13tPWnK0FbjSS6D8YoA3n3bZmb3KiUYA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      />
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "styles", "data-turbo-track": "reload" %>
+  </head>
+
+  <body class="app">
+    <header class="header">
+      <%= link_to root_path, class: "header__logo header__href" do %>
+        <%= content_tag :i, "", class: "fa-solid fa-truck-fast header__icon" %>
+        <%= content_tag :span, "MAKE DEL.", class: "header__text" %>
+      <% end %>
+
+      <nav>
+        <%= link_to "Customers", customers_path, class: "text-white ms-5" %>
+        <%= link_to "Drivers", drivers_path, class: "text-white ms-5" %>
+        <%= link_to "Orders", orders_path, class: "text-white ms-5" %>
+        <%= link_to "Products", products_path, class: "text-white ms-5" %>
+        <%= link_to "Vehicles", vehicles_path, class: "text-white ms-5" %>
+      </nav>
+
+      <%= link_to login_path, class: "header__logo header__href" do %>
+        <%= content_tag :i, "", class: "fa-solid fa-circle-user header__icon" %>
+        <%= content_tag :span, "Login", class: "header__text" %>
+      <% end %>
+    </header>
+
+    <%= yield %>
+
+    <footer class="footer">
+      <div class="icons-container">
+        <a class="contacts" href="tel:+380977622948">
+          <i class="fa-solid fa-phone contacts__icon icon-anchor"></i>
+        </a>
+        <a class="contacts" href="mailto:r.karpovets.ia32@kpi.ua">
+          <i class="fa-solid fa-envelope contacts__icon icon-anchor"></i>
+        </a>
+        <a class="contacts" href="https://t.me/rkarpovets">
+          <i class="fa-brands fa-telegram contacts__icon icon-anchor"></i>
+        </a>
+        <a class="contacts" href="viber://chat?number=%2B380977622948">
+          <i class="fa-brands fa-viber contacts__icon icon-anchor"></i>
+        </a>
+      </div>
+      <p class="copyright">&copy; <%= Time.now.year %> MAKE Delivery. All rights reserved.*</p>
+    </footer>
+  </body>
+</html>

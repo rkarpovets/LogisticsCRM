@@ -1,0 +1,41 @@
+<% content_for :title do %>
+  Editing driver info
+<% end %>
+
+<section class="entity-table">
+  <h1 class="mb-3">Editing <%= @driver.name + " " + @driver.surname %> info </h1>
+
+  <%= form_with model: @driver, url: driver_path do |form| %>
+    <div class="table-container">
+      <table class="table-bordered">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Contact Number</th>
+          <th>Email</th>
+          <th>Vehicle</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><%= form.text_field :name %></td>
+          <td><%= form.text_field :surname %></td>
+          <td><%= form.text_field :contact_number %></td>
+          <td><%= form.text_field :email %></td>
+          <td>
+            <%= form.collection_select :vehicle_id, @available_vehicles, :id, :vehicle_identification_number, include_blank: "None" %>
+          </td>
+          <td>
+            <div class="action-container">
+              <%= link_to "Back", driver_path(@driver), class: "btn btn-primary back-button" %>
+              <%= form.submit "Save", class: "btn btn-success" %>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</section>
