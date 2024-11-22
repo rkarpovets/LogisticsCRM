@@ -1,0 +1,37 @@
+<% content_for :title do %>
+  Vehicle
+<% end %>
+
+<section class="entity-table">
+  <h1 class="mb-3"><%= @vehicle.brand + " " + @vehicle.model %></h1>
+
+  <div class="table-container">
+    <table class="table-bordered">
+      <thead>
+      <tr>
+        <th>VIN-code</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>License Plate</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @vehicle.vehicle_identification_number %></td>
+        <td><%= @vehicle.brand %></td>
+        <td><%= @vehicle.model %></td>
+        <td><%= @vehicle.year %></td>
+        <td><%= @vehicle.license_plate_number %></td>
+        <td>
+          <div class="action-container">
+            <%= link_to "Back", vehicles_path, class: "btn btn-primary back-button" %>
+            <%= link_to "Edit", edit_vehicle_path(@vehicle), class: "btn btn-primary edit-button" %>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+<% content_for :title do %>
+  Products
+<% end %>
+
+<section class="entity-table">
+  <h1 class="mb-3">Products</h1>
+  <%= link_to "Add new product", new_product_path, class: "mb-3 btn btn-primary" %>
+
+  <div class="table-container">
+    <table class="table-bordered">
+      <thead>
+      <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Unit Price</th>
+        <th>In stock</th>
+        <th></th>
+      </tr>
+      </thead>
+      <% @products.each do |product| %>
+        <tbody>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.description %></td>
+          <td>$<%= product.unit_price %></td>
+          <td><%= product.available_quantity %></td>
+          <td>
+            <div class="action-container">
+              <%= link_to "Show", product_path(product), class: "btn btn-primary show-button" %>
+              <%= button_to "Delete", product, method: :delete, class: "btn btn-danger delete-button" %>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+</section>

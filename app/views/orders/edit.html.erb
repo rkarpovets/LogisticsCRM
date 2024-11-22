@@ -1,0 +1,55 @@
+<% content_for :title do %>
+  Edit Order
+<% end %>
+
+<section class="entity-table">
+  <h1 class="mb-3">Editing Order <%= @order.tracking_number %></h1>
+  <%= form_with model: @order, url: order_path do |form| %>
+    <div class="table-container">
+      <table class="table-bordered">
+        <thead>
+        <tr>
+          <th>Tracking Number</th>
+          <th>Called At</th>
+          <th>Customer</th>
+          <th>Driver</th>
+          <th>Vehicle</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Address</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><%= @order.tracking_number %></td>
+          <td><%= @order.formatted_created_at %></td>
+          <td><%= link_to "#{@order.customer.name + " " + @order.customer.surname}", customer_path(@order.customer_id), class: "link-opacity-100-hover" %></td>
+          <td><%= link_to "#{@order.driver.name + " " + @order.driver.surname}", driver_path(@order.driver_id), class: "link-opacity-100-hover" %></td>
+          <td><%= link_to "#{@order.driver.vehicle.brand + " " + @order.driver.vehicle.model}", vehicle_path(@order.driver.vehicle_id), class: "link-opacity-100-hover" %></td>
+          <td><%= link_to "#{@order.product.name}", product_path(@order.product_id), class: "link-opacity-100-hover" %></td>
+          <td>
+            <% if @order.status == "Pending" %>
+              <%= form.text_field :quantity %>
+            <% else %>
+              <%= @order.quantity %>
+            <% end %>
+          </td>
+          <td>$<%= @order.total_price %></td>
+          <td><%= @order.customer.address %></td>
+          <td><%= form.select :status, ["Pending", "In progress", "Completed", "Canceled"], selected: @order.status %></td>
+          <td>
+            <div class="action-container">
+              <%= link_to "Back", order_path(@order), class: "btn btn-primary back-button" %>
+              <%= form.submit "Save", class: "btn btn-success" %>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</section>

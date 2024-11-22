@@ -1,0 +1,48 @@
+<% content_for :title do %>
+  Order
+<% end %>
+
+<section class="entity-table">
+  <h1 class="mb-3">Order <%= @order.tracking_number %></h1>
+
+  <div class="table-container">
+    <table class="table-bordered">
+      <thead>
+      <tr>
+        <th>Tracking Number</th>
+        <th>Called At</th>
+        <th>Customer</th>
+        <th>Driver</th>
+        <th>Vehicle</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Address</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      </thead>
+        <tbody>
+        <tr>
+          <td><%= @order.tracking_number %></td>
+          <td><%= @order.formatted_created_at %></td>
+          <td> <%= link_to "#{@order.customer.name + " " + @order.customer.surname}", customer_path(@order.customer_id), class: "link-opacity-100-hover" %></td>
+          <td><%= link_to "#{@order.driver.name + " " + @order.driver.surname}", driver_path(@order.driver_id), class: "link-opacity-100-hover" %></td>
+          <td><%= link_to "#{@order.driver.vehicle.brand + " " + @order.driver.vehicle.model}", vehicle_path(@order.driver.vehicle_id), class: "link-opacity-100-hover" %></td>
+          <td><%= link_to "#{@order.product.name}", product_path(@order.product_id), class: "link-opacity-100-hover" %></td>
+          <td><%= @order.quantity %></td>
+          <td>$<%= @order.total_price %></td>
+          <td><%= @order.customer.address %></td>
+          <td><%= @order.status %></td>
+          <td>
+          <td>
+            <div class="action-container">
+              <%= link_to "Back", orders_path, class: "btn btn-primary" %>
+              <%= link_to "Edit", edit_order_path(@order), class: "btn btn-primary" %>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+</section>

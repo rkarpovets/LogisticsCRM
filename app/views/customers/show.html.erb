@@ -1,0 +1,38 @@
+<% content_for :title do %>
+  Customer
+<% end %>
+
+
+<section class="entity-table">
+  <h1 class="mb-3">Customer <%= @customer.name + " " + @customer.surname %></h1>
+
+  <div class="table-container">
+    <table class="table-bordered">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @customer.name %></td>
+        <td><%= @customer.surname %></td>
+        <td><%= @customer.contact_number %></td>
+        <td><%= @customer.email %></td>
+        <td><%= @customer.address %></td>
+        <td>
+          <div class="action-container">
+            <%= link_to "Back", customers_path, class: "btn btn-primary back-button" %>
+            <%= link_to "Edit", edit_customer_path(@customer), class: "btn btn-primary edit-button" %>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

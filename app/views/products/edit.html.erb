@@ -1,0 +1,37 @@
+<% content_for :title do %>
+  Editing product
+<% end %>
+
+<section class="entity-table">
+  <h1 class="mb-3">Editing <%= @product.name %> info</h1>
+
+  <%= form_with model: @product, url: product_path do |form| %>
+    <div class="table-container">
+      <table class="table-bordered">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Description</th>
+            <th>Unit Price</th>
+            <th>In stock</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= form.text_field :name %></td>
+            <td><%= form.text_field :description %></td>
+            <td>$<%= form.text_field :unit_price %></td>
+            <td><%= @product.available_quantity %></td>
+            <td>
+              <div class="action-container">
+                <%= link_to "Back", product_path(@product), class: "btn btn-primary back-button" %>
+                <%= form.submit "Save", class: "btn btn-success" %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</section>

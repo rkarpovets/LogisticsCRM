@@ -1,0 +1,46 @@
+<% content_for :title do %>
+  Drivers
+<% end %>
+
+<section class="entity-table">
+  <h1 class="mb-3">Drivers</h1>
+  <%= link_to "Add new driver", new_driver_path, class: "mb-3 btn btn-primary" %>
+
+  <div class="table-container">
+    <table class="table-bordered">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Vehicle</th>
+        <th></th>
+      </tr>
+      </thead>
+      <% @drivers.each do |driver| %>
+        <tbody>
+        <tr>
+          <td><%= driver.name %></td>
+          <td><%= driver.surname %></td>
+          <td><%= driver.contact_number %></td>
+          <td><%= driver.email %></td>
+          <td>
+            <% if driver.vehicle_id.blank? %>
+              <%= "None" %>
+            <% else %>
+              <%= link_to "#{driver.vehicle.brand + " " + driver.vehicle.model}", vehicle_path(driver.vehicle_id), class: "link-opacity-100-hover" %>
+            <% end %>
+          </td>
+          <td>
+            <div class="action-container">
+              <%= link_to "Show", driver_path(driver), class: "btn btn-primary show-button" %>
+              <%= button_to "Delete", driver, method: :delete, class: "btn btn-danger delete-button" %>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+<% content_for :title do %>
+  Add vehicle
+<% end %>
+
+<section class="entity-table">
+  <h1 class="mb-3">New vehicle</h1>
+  <%= form_with model: @vehicle do |form| %>
+    <div class="table-container">
+      <table class="table-bordered">
+        <thead>
+        <tr>
+          <th>Vehicle Identification Number</th>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Year</th>
+          <th>License Plate</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><%= form.text_field :vehicle_identification_number %></td>
+          <td><%= form.text_field :brand %></td>
+          <td><%= form.text_field :model %></td>
+          <td><%= form.text_field :year %></td>
+          <td><%= form.text_field :license_plate_number %></td>
+          <td>
+            <div class="action-container">
+              <%= link_to "Back", vehicles_path, class: "btn btn-primary back-button" %>
+              <%= form.submit "Save", class: "btn btn-success" %>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</section>
