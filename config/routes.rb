@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'pages#index'
 
   resources :orders
@@ -14,6 +15,6 @@ Rails.application.routes.draw do
 
 
   # authorizations
-  get "/login", to: "authorizations#login"
-  get "/signup", to: "authorizations#sign_up"
+  # get "/login", to: "authorizations#login"
+  # get "/signup", to: "authorizations#signup"
 end
