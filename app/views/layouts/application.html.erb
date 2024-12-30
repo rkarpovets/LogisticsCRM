@@ -34,7 +34,7 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "styles", "data-turbo-track": "reload" %>
   </head>
@@ -46,16 +46,22 @@
         <%= content_tag :span, "MAKE DEL.", class: "header__text" %>
       <% end %>
 
-      <nav>
-        <%= link_to "Customers", customers_path, class: "text-white ms-5" %>
-        <%= link_to "Drivers", drivers_path, class: "text-white ms-5" %>
-        <%= link_to "Orders", orders_path, class: "text-white ms-5" %>
-        <%= link_to "Products", products_path, class: "text-white ms-5" %>
-        <%= link_to "Vehicles", vehicles_path, class: "text-white ms-5" %>
-      </nav>
+      <% if current_user&.admin? %>
+        <nav>
+          <%= link_to "Customers", customers_path, class: "text-white ms-5" %>
+          <%= link_to "Drivers", drivers_path, class: "text-white ms-5" %>
+          <%= link_to "Orders", orders_path, class: "text-white ms-5" %>
+          <%= link_to "Products", products_path, class: "text-white ms-5" %>
+          <%= link_to "Vehicles", vehicles_path, class: "text-white ms-5" %>
+          <%= link_to "Order requests", order_requests_path, class: "text-white ms-5" %>
+        </nav>
+      <% elsif current_user&.user? %>
+        <%= link_to "Order requests", order_requests_path, class: "text-white ms-5" %>
+      <% end %>
+
 
       <% if user_signed_in? %>
-        <%= link_to destroy_user_session_path, method: :delete, class: 'header__logo header__href' do %>
+        <%= button_to destroy_user_session_path, method: :delete, class: 'header__logo header__href logout-button' do %>
           <%= content_tag :i, "", class: "fa-solid fa-circle-user header__icon" %>
           <%= content_tag :span, "Log out", class: "header__text" %>
         <% end %>

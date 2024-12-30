@@ -1,0 +1,45 @@
+<% content_for :title do %>
+  Order Requests
+<% end %>
+
+<sectino class="entity-table">
+  <h1>Order requests</h1>
+  <% if current_user.user? %>
+    <%= link_to "Create new order request", new_order_request_path, class: "mb-3 btn btn-primary" %>
+  <% end %>
+  <div class="table-container">
+    <table class="table-bordered">
+      <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Delivery Address</th>
+        <th>Requester Email</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @order_requests.each do |order_request| %>
+        <tr>
+          <td><%= order_request.product.name %></td>
+          <td><%= order_request.quantity %></td>
+          <td><%= order_request.delivery_address %></td>
+          <td><%= order_request.user.email %></td>
+          <td><%= order_request.status %></td>
+          <td>
+            <div class="action-container">
+              <% if current_user.admin? %>
+                <%= link_to "Show", order_request_path(order_request), class: "btn btn-primary show-button" %>
+                <%= button_to "Delete", order_request, method: :delete, class: "btn btn-danger delete-button" %>
+              <% elsif current_user.user? %>
+                <%= link_to "Show", order_request_path(order_request), class: "btn btn-primary show-button" %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</sectino>

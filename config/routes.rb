@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  resources :order_requests
+
+  devise_for :users, controllers: { registrations: "users/registrations" }
   root 'pages#index'
 
   resources :orders
@@ -13,8 +15,4 @@ Rails.application.routes.draw do
   get "/about", to: "pages#about"
   get "/decisions_for_business", to: "pages#decisions_for_business"
 
-
-  # authorizations
-  # get "/login", to: "authorizations#login"
-  # get "/signup", to: "authorizations#signup"
 end
