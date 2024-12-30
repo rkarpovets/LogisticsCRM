@@ -1,0 +1,39 @@
+<% content_for :title do %>
+  Editing order request
+<% end %>
+
+<section class="entity-table">
+  <h1>Edit order request</h1>
+
+  <%= form_with model: @order_request, url: order_request_path do |form| %>
+  <div class="table-container">
+    <table class="table-bordered">
+      <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Delivery Address</th>
+        <th>Requester Email</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @order_request.product.name %></td>
+        <td><%= @order_request.quantity %></td>
+        <td><%= @order_request.delivery_address %></td>
+        <td><%= @order_request.user.email %></td>
+        <td><%= form.select :status, ["Pending", "In progress", "Completed", "Canceled"], selected: @order_request.status %></td>
+        <td>
+          <div class="action-container">
+            <%= link_to "Back", order_requests_path, class: "btn btn-primary back-button" %>
+            <%= form.submit "Save", class: "btn btn-success" %>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+</section>

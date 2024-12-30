@@ -486,3 +486,12 @@ td img {
 	margin-bottom: 10px;
 	margin-right: 5px;
 }
+
+.is-invalid {
+	border-color: red;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+}

@@ -4,7 +4,7 @@
 
 <section class="entity-table">
   <h1 class="mb-3">New vehicle</h1>
-  <%= form_with model: @vehicle do |form| %>
+  <%= form_with model: @vehicle, data: { controller: "vehicle" } do |form| %>
     <div class="table-container">
       <table class="table-bordered">
         <thead>
@@ -19,11 +19,26 @@
         </thead>
         <tbody>
         <tr>
-          <td><%= form.text_field :vehicle_identification_number %></td>
-          <td><%= form.text_field :brand %></td>
-          <td><%= form.text_field :model %></td>
-          <td><%= form.text_field :year %></td>
-          <td><%= form.text_field :license_plate_number %></td>
+          <td>
+            <%= form.text_field :vehicle_identification_number, data: { target: "vehicle.vehicleIdentificationNumber", action: "input->vehicle#validate" } %>
+            <span class="error-message" data-target="validation.error"></span>
+          </td>
+          <td>
+            <%= form.text_field :brand, data: { target: "vehicle.brand", action: "input->vehicle#validate" } %></td>
+          <span class="error-message"></span>
+          </td>
+          <td>
+            <%= form.text_field :model, data: { target: "vehicle.model", action: "input->vehicle#validate" } %>
+            <span class="error-message"></span>
+          </td>
+          <td>
+            <%= form.text_field :year, data: { target: "vehicle.year", action: "input->vehicle#validate" } %>
+            <span class="error-message"></span>
+          </td>
+          <td>
+            <%= form.text_field :license_plate_number, data: { target: "vehicle.licensePlateNumber", action: "input->vehicle#validate" } %></td>
+            <span class="error-message"></span>
+          </td>
           <td>
             <div class="action-container">
               <%= link_to "Back", vehicles_path, class: "btn btn-primary back-button" %>

@@ -1,0 +1,46 @@
+<section class="entity-table">
+
+<h1 class="mb-3">New order request</h1>
+  <% if @order_request.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>There were errors with your submission:</h4>
+      <ul>
+        <% @order_request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: @order_request do |form| %>
+    <div class="table-container">
+      <table class="table-bordered">
+        <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Delivery Address</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= form.collection_select :product_id, Product.all, :id, :name, prompt: "Select product" %></td>
+            <td><%= form.text_field :quantity %></td>
+            <td><%= form.text_field :delivery_address %></td>
+            <td><%= form.text_field :first_name %></td>
+            <td><%= form.text_field :last_name %></td>
+            <td>
+              <div class="action-container">
+                <%= link_to "Back", order_requests_path, class: "btn btn-primary back-button" %>
+                <%= form.submit "Save", class: "btn btn-success" %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</section>
